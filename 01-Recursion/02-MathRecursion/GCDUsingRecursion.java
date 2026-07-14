@@ -39,3 +39,10 @@ public class GCDUsingRecursion {
         // Output: GCD of 20 and 8 is 4
     }
 }
+
+/**
+ * gcd(20, 8)
+= gcd(8, 20 % 8)   → gcd(8, 4)
+= gcd(4, 8 % 4)    → gcd(4, 0)
+= b is 0, so return a → 4
+ */
