@@ -55,10 +55,43 @@ public class SelectionSort {
 
 
 /** 
- *  arr = [64,25,12,22,11]
- * After pass 1 (i = 0): [11,25,12,22,64] -> smallest (11) moved to front 
- * After pass 2 (i = 1): [11,12,25,22,64] -> next smallest (12) placed at index 1 
- * After pass 3 (i = 2): [11,12,22,25,64] -> next smallest (22) placed at index 2 
- * After pass 4 (i = 3): [11,12,22,25,64] -> no change (25 was already in the right place)
- * Final sorted array: [11,12,22,25,64]
+ *  Selection Sort Dry Run
+Initial Array: [64, 25, 12, 22, 11]
+
+Pass 1 (i=0), scanning j from 1 to 4 for minimum:
+  start: minIndex=0 (value 64)
+  j=1: 25 < 64 -> minIndex=1
+  j=2: 12 < 25 -> minIndex=2
+  j=3: 22 < 12? No
+  j=4: 11 < 12 -> minIndex=4
+  Minimum found at index 4 (value 11) -> swap arr[0] and arr[4]
+After Pass 1: [11, 25, 12, 22, 64]
+
+Pass 2 (i=1), scanning j from 2 to 4 for minimum:
+  start: minIndex=1 (value 25)
+  j=2: 12 < 25 -> minIndex=2
+  j=3: 22 < 12? No
+  j=4: 64 < 12? No
+  Minimum found at index 2 (value 12) -> swap arr[1] and arr[2]
+After Pass 2: [11, 12, 25, 22, 64]
+
+Pass 3 (i=2), scanning j from 3 to 4 for minimum:
+  start: minIndex=2 (value 25)
+  j=3: 22 < 25 -> minIndex=3
+  j=4: 64 < 22? No
+  Minimum found at index 3 (value 22) -> swap arr[2] and arr[3]
+After Pass 3: [11, 12, 22, 25, 64]
+
+Pass 4 (i=3), scanning j=4 for minimum:
+  start: minIndex=3 (value 25)
+  j=4: 64 < 25? No
+  Minimum already at index 3 -> minIndex == i -> no swap
+After Pass 4: [11, 12, 22, 25, 64]
+
+Final Sorted Array: [11, 12, 22, 25, 64]
+
+Note: Unlike Bubble Sort, Selection Sort always scans the full remaining
+unsorted range every pass, even when nothing needs to move (see Pass 4).
+There's no early-exit optimization possible here - that's why Selection
+Sort is always O(n^2), even on a nearly-sorted array.
  */
