@@ -25,7 +25,7 @@
  * Space Complexity:
  * - Optimal: O(1) — no extra space used
  */
-public class LinearSearch {
+class LinearSearch {
 
     public static int search(int[] arr, int target) {
         if (arr == null || arr.length == 0) {
