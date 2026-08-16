@@ -1,6 +1,5 @@
 /**
  * Problem: Right Rotate Array by D Places
- * Difficulty: Easy
  * Pattern: Rotation using Reversal
  *
  * Approach(es):

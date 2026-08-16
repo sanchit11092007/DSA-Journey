@@ -1,6 +1,5 @@
 /** 
  * Problem: Largest Element in the Array 
- * Difficulty: Easy 
  * Pattern: Single Pass 
  * 
  * Approach: 

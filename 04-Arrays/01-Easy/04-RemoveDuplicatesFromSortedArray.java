@@ -1,6 +1,5 @@
 /** 
  * Problem: Remove Duplicates from Sorted Array 
- * Difficulty: Easy 
  * Pattern: Two Pointers (Slow - Fast)
  * 
  * Approach: 

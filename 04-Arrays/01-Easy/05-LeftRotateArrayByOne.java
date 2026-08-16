@@ -1,6 +1,5 @@
 /** 
  * Problem: Left Rotate Array by One Place 
- * Difficulty: Easy 
  * Pattern: Simple Shifting 
  * 
  * Approach: 

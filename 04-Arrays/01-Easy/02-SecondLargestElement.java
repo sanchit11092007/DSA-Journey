@@ -1,6 +1,5 @@
 /**
  * Problem: Second Largest Element in the Array
- * Difficulty: Easy
  * Pattern: Single Pass / Linear Scan
  * 
  * Optimal Approach:
