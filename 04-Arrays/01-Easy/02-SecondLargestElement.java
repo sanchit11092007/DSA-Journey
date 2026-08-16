@@ -22,8 +22,8 @@ class SecondLargestElement {
             return -1; // not enough elements for a second largest
         }
 
-        int largest = arr[0];
-        int secondLargest = -1;
+        int largest = arr[0];   
+        int secondLargest = -1; 
 
         for (int i = 1; i < arr.length; i++) {
             if (arr[i] > largest) {

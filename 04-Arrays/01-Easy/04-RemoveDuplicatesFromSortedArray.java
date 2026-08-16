@@ -11,6 +11,13 @@
  *   If arr[j] != arr[i], it's a new unique element. Increment i and copy arr[j] to arr[i+1].
  *   If arr[j] == arr[i], it's a duplicate. Skip it by incrementing j only.
  * 
+ * Edge Cases:
+ *  - Empty array: no elements to process, return 0 unique elements. 
+ *  - Single element array: only one unique element, return 1. 
+ * - All elements same (e.g. {2,2,2}): only one unique element remains, handled naturally since 'j' never finds a value different from 'i'. 
+ * - No duplicates at all: every element is unique, i moves every step, final count equals array length. 
+ * - Negative numbers: works fine, only equality comparison is used. 
+ * 
  * Time Complexity: O(N) - one pass through the array.
  * Space Complexity: O(1) - no extra space needed.  
  */
