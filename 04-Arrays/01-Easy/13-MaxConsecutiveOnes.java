@@ -1,24 +1,16 @@
 /**
- * Problem: Maximum Consecutive ones 
- * Pattern: Single Pass / Running Count
+ * 📌 Problem: Maximum Consecutive Ones
+ * ⚡ Difficulty: Easy
+ * 💡 Pattern: Single Pass / Running Count
  * 
- * Approach: 
- * 1. Optimal (Single Pass, Running Count):
- *    Walk through the array once. Keep a counter for the current streak of consecutive 1s. 
- *     Whenever you see a 1, increase the counter. 
- *   Whenever you see a 0, the streak breaks - compare the current counter with the maximum seen so far, then reset the counter to 0.
- *  At the end, do one final comparison, in case the array ends on a streak of 1s (otherwise you'd miss counting the last streak)
+ * 🔍 Description:
+ * Finds the maximum number of consecutive 1s in a binary array.
+ * We traverse the array keeping a running count of 1s. Whenever we encounter 1, we increment 
+ * the count and update the maximum count. If we encounter 0, we reset the running count.
  * 
- * 
- * Edge Cases: 
- * - Empty array: no ones at all, return 0. 
- * - All zeros: no streak ever forms, max stays 0. 
- * - All ones: one big streak, max equals array length. 
- * - Array ends with a streak of ones (no trailing zero): handled by the final comparison after the loop ends. 
- * - Single element array (either 0 or 1): works correctly either way.
- * 
- * Time Complexity: 0(N) - single pass through the array  
- * Space Complexity: 0(1) - constant extra space for counters  
+ * 📈 Complexity Analysis:
+ * - Time Complexity: O(N) -> Single pass through the array.
+ * - Space Complexity: O(1) -> Only constant variables are used.
  */
 
 class MaxConsecutiveOnes {
@@ -30,7 +22,7 @@ class MaxConsecutiveOnes {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == 1) {
                 currentCount++; 
-                maxCount = Math.max(maxCount,currentCount);
+                maxCount = Math.max(maxCount, currentCount);
             } else {
                 currentCount = 0;
             }
@@ -39,9 +31,8 @@ class MaxConsecutiveOnes {
         return maxCount;
     }
 
-    public static void main (String[] args) {
-        int[] arr = {1,1,0,1,1,1,0,1}; 
+    public static void main(String[] args) {
+        int[] arr = {1, 1, 0, 1, 1, 1, 0, 1}; 
         System.out.println(findMaxConsecutiveOnes(arr));
-        // Expected output: 3 
     }
 }

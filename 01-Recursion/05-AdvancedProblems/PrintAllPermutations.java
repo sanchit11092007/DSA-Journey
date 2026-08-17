@@ -2,45 +2,38 @@ import java.util.ArrayList;
 import java.util.List; 
 
 /**
- * Problem: Print All Permutations of an Array using Recursion 
- * Difficulty: Medium 
- * Pattern: Recursion + Backtracking (swap-based approach)
+ * 📌 Problem: Print All Permutations of an Array
+ * ⚡ Difficulty: Medium
+ * 💡 Pattern: Recursion + Backtracking (Swap-Based)
  * 
- * What is Permutation? 
- * Every possible arrangement of the elements of an array. 
- * Example: [1,2,3] has 3! = 6 permutations: 
- * [1,2,3] [1,3,2] [2,1,3] [2,3,1] [3,1,2] [3,2,1]
+ * 🔍 Description:
+ * A permutation is any possible arrangement of the elements in an array.
+ * For an array of size N, there are N! permutations.
+ * This approach swaps elements to explore different choices and then swaps them back (backtracks)
+ * to restore the array for the next choice.
  * 
- * Approach (Swap-based Backtracking): 
- * - Use an index "start" to mark which position we're currently fixing 
- * - Base case: if start == arr.length, all permutations are fixed -> we have one complete permutation -> save/print it.
- * - Recursive case: for every index i from start to end, 
- *   1. Swap arr[start] with arr[i]  -> "choose" element at i for this position 
- *   2. Recurse with (start + 1)     -> fix the next position 
- *   3. Swap back arr[start] with arr[i] -> "undo" the choice (BACKTRACK)
- * - The swap-back step is critical - without it, the array stays modified and later permutations become incorrect 
- * 
- * Time Complexity: 0(N! * N) -> N! permutations, 0(N) to copy each one 
- * Space Complexity: 0(N) -> recursion stack depth (+0(N! * N) to store all results)
+ * 📈 Complexity Analysis:
+ * - Time Complexity: O(N! * N) -> There are N! permutations, and copying each takes O(N) time.
+ * - Space Complexity: O(N) -> The recursion stack depth is equal to the size of the array.
  */
 
 public class PrintAllPermutations {
-    public static void permute(int arr[], int start, List<List<Integer>> result) {
-        // base case: fixed all positions -> one full permutation is ready 
+    public static void permute(int[] arr, int start, List<List<Integer>> result) {
+        // Base Case: If we have fixed all positions, save the current permutation
         if (start == arr.length) {
             List<Integer> current = new ArrayList<>(); 
-            for (int num: arr) {
-                cirrent.add(num); 
+            for (int num : arr) {
+                current.add(num); 
             }
             result.add(current); 
             return; 
         }
 
-        // recursive case: try every element at position "start"
+        // Recursive Step: Try placing each element at the 'start' position
         for (int i = start; i < arr.length; i++) {
-            swap(arr,start,i);    //choose 
-            permute(arr,start + 1, result);   // recurse (explore)
-            swap(arr,start,i);  // un-choose (backtrack)
+            swap(arr, start, i);                  // Choose: Swap element at i to the start position
+            permute(arr, start + 1, result);      // Explore: Recursively fix the next positions
+            swap(arr, start, i);                  // Backtrack: Undo the swap for the next iterations
         }
     }
 
@@ -51,21 +44,13 @@ public class PrintAllPermutations {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1,2,3}; 
+        int[] arr = {1, 2, 3}; 
         List<List<Integer>> result = new ArrayList<>(); 
 
-        permute(arr,0,result); 
+        permute(arr, 0, result); 
 
-        for (List<Integer> perm: result) {
+        for (List<Integer> perm : result) {
             System.out.println(perm); 
         }
-
-        // Output: 
-        // [1, 2, 3]
-        // [1, 3, 2]
-        // [2, 1, 3]
-        // [2, 3, 1]
-        // [3, 1, 2]
-        // [3, 2, 1]
     }
 }

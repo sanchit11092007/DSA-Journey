@@ -1,40 +1,26 @@
 /**
- * Problem: Longest Subarray with sum k (Positive only)
- * Pattern: Sliding Window / Two Pointers
+ * 📌 Problem: Longest Subarray with Sum K (Positives Only)
+ * ⚡ Difficulty: Easy
+ * 💡 Pattern: Sliding Window / Two Pointers
  * 
- * Approaches: 
- * 1. Brute Force (Check Every Subarray): 
- *    Use two loops to fix every possible starting and ending point of a subarray. 
- *    For each one, add up all elements in that range using a third inner loop, and check if the sum equals k. 
- *    Keep track of the longest length found. Very slow, checks every subarray from scratch.
+ * 🔍 Description:
+ * Finds the length of the longest subarray that sums to exactly K.
+ * - Brute Force: Check all subarrays using three loops.
+ * - Better: Check all subarrays using two loops by calculating running sum on the fly.
+ * - Optimal: Use a sliding window with two pointers `left` and `right`. Expand the window by 
+ *   moving `right` and adding to the sum. If the sum exceeds K, shrink the window by 
+ *   moving `left` until the sum is less than or equal to K.
  * 
- * 2. Better (Two Loops, Running Sum): 
- *    Same idea of fixing a starting point with the outer loop, but instead of a third loop to calculate the sum every time, 
- *    keep adding to a running sum as the inner loop moves forward. 
- *     This avoids recalculating the sum from scratch each time.
- * 
- * 3. Optimal (Sliding Window, Two Pointers): 
- *    Since all numbers are positive, the sum only increases as the window grows and only decreases as it shriks - this predictable behavior is what makies sliding window possible here. 
- *    Keep two pointers 'left' and 'right', marking the current window. Expand the window by moving 'right' forward, adding to the running sum. 
- *    If the sum becomes greater than k, shrink thr window from the left (subtract arr[left], move left forward) until the sum is back to k or less. 
- *    Whenever sum equals k, check if this window is the longest one found so far.
- * 
- * Edge Cases: 
- * - Empty array: no subarray possible, return 0. 
- * - No subarray sums to k: return 0 
- * - Single element equal to k: that element alone is a valid subarray of length 1. 
- * 
- * Time Complexity: 
- * - Brute Force: O(N^3) - three nested loops
- * - Better: O(N^2) - two nested loops, constant time sum calculation
- * - Optimal: O(N) - single pass through the array (each element enters and leaves the window at most once)
- * 
- * Space Complexity: 
- * - Brute Force: O(1) - no extra space
- * - Better: O(1) - no extra space
- * - Optimal: O(1) - only two pointer variables
+ * 📈 Complexity Analysis:
+ * - Time Complexity:
+ *   - Brute Force: O(N^3)
+ *   - Better: O(N^2)
+ *   - Optimal: O(N) -> Each element is visited at most twice (entered and exited the window).
+ * - Space Complexity:
+ *   - Brute Force: O(1)
+ *   - Better: O(1)
+ *   - Optimal: O(1) -> Done in-place without extra space.
  */
-
 
 class LongestSubarrayWithSumKPositives {
 
@@ -43,14 +29,14 @@ class LongestSubarrayWithSumKPositives {
         int n = arr.length; 
         int maxLen = 0; 
 
-        for (int start = 0; start < n; start ++) {
+        for (int start = 0; start < n; start++) {
             for (int end = start; end < n; end++) {
                 int sum = 0; 
                 for (int i = start; i <= end; i++) {
                     sum += arr[i];
                 }
                 if (sum == k) {
-                    maxLen = Math.max(maxLen, end-start+1);
+                    maxLen = Math.max(maxLen, end - start + 1);
                 }
             }
         }
@@ -69,7 +55,7 @@ class LongestSubarrayWithSumKPositives {
                 sum += arr[end];
 
                 if (sum == k) {
-                    maxLen = Math.max(maxLen,end-start+1);
+                    maxLen = Math.max(maxLen, end - start + 1);
                 }
             }
         }
@@ -86,12 +72,15 @@ class LongestSubarrayWithSumKPositives {
         while (right < n) {
             sum += arr[right];
 
+            // Shrink the window if current sum exceeds K
             while (sum > k && left <= right) {
                 sum -= arr[left];
                 left++;
             }
+
+            // Check if we found a subarray with sum K
             if (sum == k) {
-                maxLen = Math.max(maxLen,right-left+1);
+                maxLen = Math.max(maxLen, right - left + 1);
             }
             right++;
         }
@@ -99,11 +88,11 @@ class LongestSubarrayWithSumKPositives {
     }
 
     public static void main(String[] args) {
-        int[] arr = {2,3,5,1,9}; 
+        int[] arr = {2, 3, 5, 1, 9}; 
         int k = 10; 
 
-        System.out.println(longestSubarrayBrute(arr,k));
-        System.out.println(longestSubarrayBetter(arr,k));
-        System.out.println(longestSubarrayOptimal(arr,k));
+        System.out.println(longestSubarrayBrute(arr, k));
+        System.out.println(longestSubarrayBetter(arr, k));
+        System.out.println(longestSubarrayOptimal(arr, k));
     }
 }

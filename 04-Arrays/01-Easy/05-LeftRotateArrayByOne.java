@@ -1,45 +1,41 @@
-/** 
- * Problem: Left Rotate Array by One Place 
- * Pattern: Simple Shifting 
+/**
+ * 📌 Problem: Left Rotate Array by One Place
+ * ⚡ Difficulty: Easy
+ * 💡 Pattern: Simple Shifting
  * 
- * Approach: 
- *     Store the first element in a temp variable. Then shift every other element one step to the left 
- *       (each element takes the place of the one before it). 
- *    At the end, put the saved first element at the very last position. 
- *   That's it - one full rotation done. 
+ * 🔍 Description:
+ * Shifts every element in the array one position to the left. The first element 
+ * is moved to the last position of the array.
  * 
- * Edge Cases: 
- *  - Empty array: nothing to rotate, just return as it is. 
- *  - Single element array: rotating one element does nothing, arrays stays the same. 
- * - Array with all same values: rotation still works fine, output looks the same as input since values repeat.
- *  
- * Time Complexity: 0(N) 
- * Space Complexity: 0(1)
+ * 📈 Complexity Analysis:
+ * - Time Complexity: O(N) -> Single pass to shift N - 1 elements.
+ * - Space Complexity: O(1) -> Done in-place.
  */
 
 class LeftRotateArrayByOne {
 
     public static void rotateByOne(int[] arr) {
+        // Edge Case: Empty or single-element array needs no rotation
         if (arr == null || arr.length <= 1) {
-            return;  // nothing to rotate
+            return; 
         }
 
-        int first = arr[0];  // save the first value 
+        int first = arr[0];  // Store the first element temporarily
 
+        // Shift all elements one position to the left
         for (int i = 0; i < arr.length - 1; i++) {
-            arr[i] = arr[i+1];  // shift each values one step left
+            arr[i] = arr[i + 1];
         }
 
-        arr[arr.length - 1] = first;  // put saved value at the end
+        arr[arr.length - 1] = first;  // Put the first element at the end
     }
 
-    public static void main (String[] args) {
-        int[] arr = {1,2,3,4,5}; 
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5}; 
         rotateByOne(arr); 
 
-        for (int val: arr) {
+        for (int val : arr) {
             System.out.print(val + " ");
         }
-        // Expected output: 2 3 4 5 1 
     }
 }

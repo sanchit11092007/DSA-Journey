@@ -1,28 +1,29 @@
 /**
-* Problem: Print "N" (or any statement) N times using Recursion 
-* Difficulty: Easy 
-* Pattern: Basic Recursion
-*
-* Approach: 
-* - Base case: if n == 0, stop recursion
-* - Recursive case: print the statement, then call the function again with (n-1)
-* - Each call reduces n by 1, moving it closer to the base case 
-* 
-* Time complexity:0(N) -> one call per value from N down to 1 
-* Space complexity: 0(N) -> recursion stack holds N pending calls 
+ * 📌 Problem: Print "Programming" N times using Recursion
+ * ⚡ Difficulty: Easy
+ * 💡 Pattern: Basic Recursion
+ * 
+ * 🔍 Approach:
+ * - Base Case: If n is 0, stop recursion.
+ * - Recursive Step: Print the message first, then call the function with (n - 1).
+ * 
+ * 📈 Complexity Analysis:
+ * - Time Complexity: O(N) -> We make N recursive calls.
+ * - Space Complexity: O(N) -> The recursion stack holds N active function calls.
  */
 
 public class PrintNTimes {
     public static void printN(int n) {
-        // base case 
+        // Base Case: Stop recursion when n reaches 0
         if (n == 0) {
             return; 
         }
-        // work done in this call 
+
+        // Action: Print the message
         System.out.println("Programming");
 
-        // recursive case 
-        printN(n-1);
+        // Recursive Step: Call the function for (n - 1)
+        printN(n - 1);
     }
 
     public static void main(String[] args) {
@@ -31,9 +32,9 @@ public class PrintNTimes {
     }
 }
 
-// Output: 
-// Programming 
-// Programming 
-// Programming 
-// Programming 
-// Programming 
+// Expected Output:
+// Programming
+// Programming
+// Programming
+// Programming
+// Programming

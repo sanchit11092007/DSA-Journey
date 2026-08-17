@@ -1,41 +1,37 @@
-import java.util.Scanner; 
-
 /**
- * Problem: Number Hashing 
- * Difficulty: Easy 
- * Pattern: Array Hashing (fixed key space)
+ * 📌 Problem: Number Hashing
+ * ⚡ Difficulty: Easy
+ * 💡 Pattern: Array Hashing (Fixed Key Space)
  * 
- * Approach: 
- * 1. Goal: answer "how many times does X appear?" instantly, for many queries, without rescanning the array every time. 
- * 2. This only works when the numbers fall in a known, small range (say 0 to 1000). 
- *    If numbers could be arbitrarily large or negative, an array wouldn't work here. 
- * 3. Make one pass through the input array, and for each number x, increment hash[x]. This builds a frequency table in one shot. 
- * 4. After that, any query "how many times does X appear?" is just hash[X] - a direct array lookup, 0(1).
+ * 🔍 Description:
+ * Count the frequency of each number in an array. By storing the frequency in an index-based
+ * array (where hash[x] stores the count of x), we can perform lookup queries instantly.
+ * Note: This works only when numbers are non-negative and fall within a relatively small range.
  * 
- * Time Complexity: 0(n) to build the hash, 0(1) per query 
- * Space Complexity: 0(maxVal) - array size depends on the range of values, not input size 
+ * 📈 Complexity Analysis:
+ * - Time Complexity: O(N) to precompute the frequency + O(1) per lookup query.
+ * - Space Complexity: O(maxVal) -> Size of the hash array depends on the maximum value.
  */
-
 
 public class NumberHashing {
 
     public static void main(String[] args) {
-        int[] arr = {1,2,2,3,5,5,10}; 
-        int maxVal = 1000;  //assuming values are within 0 to 1000
+        int[] arr = {1, 2, 2, 3, 5, 5, 10}; 
+        int maxVal = 1000;  // Assuming values are in the range [0, 1000]
 
-        int[] hash = precomputeFrequency(arr,maxVal); 
+        int[] hash = precomputeFrequency(arr, maxVal); 
 
-        System.out.println("Count of 5: "+ hash[5]);  //expected: 3 
-        System.out.println("Count of 2: " + hash[2]);  // expected: 2 
-        System.out.println("Count of 7: " + hash[7]);  // expected: 0 (never appears)
+        System.out.println("Count of 5: " + hash[5]);   // Expected: 2
+        System.out.println("Count of 2: " + hash[2]);   // Expected: 2
+        System.out.println("Count of 7: " + hash[7]);   // Expected: 0
     }
 
-    // precompute frequency of each number using array hashing - 0(n)
+    // Precomputes the frequency of each number using an array
     static int[] precomputeFrequency(int[] arr, int maxVal) {
         int[] hash = new int[maxVal + 1]; 
-        for (int x: arr) {
+        for (int x : arr) {
             hash[x]++;
         }
-        return hash;   // each query now 0(1)
+        return hash;
     }
 }

@@ -1,21 +1,16 @@
-import java.util.Scanner; 
-
 /**
- * Problem: Character Hashing (Uppercase + Lowercase)
- * Difficult: Easy 
- * Pattern: Array Hashing (fixed key space)
+ * 📌 Problem: Character Hashing (Uppercase & Lowercase)
+ * ⚡ Difficulty: Easy
+ * 💡 Pattern: Array Hashing (Fixed Key Space)
  * 
- * Approach: 
- * 1. Character can be 'a' - 'z' (26) or 'A' - 'Z' (26) - 52 possible values total. 
- * 2. Instead of one array of size 52, use two separate arrays: one for lowercase, one for uppercase. 
- *    This keeps the index math simple and avoids off-by-one mistakes from trying to cram both cases into one array. 
- * 3. For lowercase: index = c - 'a' (gives 0 to 25)
- *    For uppercase: index = c - 'A' (gives 0 to 25)
- * 4. Loop through the string once, check each character's case, increment the correct array at the correct index. 
- * 5. Answer any "how many times does X appear" query in 0(1) by reading the array.
+ * 🔍 Description:
+ * Count the frequency of each letter in a string. Since uppercase and lowercase letters 
+ * have separate ASCII values, we use two separate array tables of size 26 (one for 'a'-'z' 
+ * and one for 'A'-'Z') to keep the index arithmetic simple and clean.
  * 
- * Time Complexity: 0(n) to build the hash, 0(1) per query 
- * Space Complexity: 0(1) - arrays are fixed size (26 + 26), doesn't grow with input  
+ * 📈 Complexity Analysis:
+ * - Time Complexity: O(N) to precompute the frequency + O(1) per lookup query.
+ * - Space Complexity: O(1) -> We use fixed-size tables (26 * 2 = 52 integers).
  */
 
 public class CharacterHashing {
@@ -27,26 +22,26 @@ public class CharacterHashing {
         int[] lower = hash[0]; 
         int[] upper = hash[1]; 
 
-        System.out.println("a: " + lower['a' - 'a']); // expected: 1 (from "Java")
-        System.out.println("H: " + upper['H' - 'A']); // expected: 1 (from "Hashing")
-        System.out.println("n: " + lower['n' - 'a']); // expected: 2 (from "Hashing")
-        System.out.println("J: " + upper['J' - 'A']); // expected: 1 (from "Java")
+        System.out.println("a: " + lower['a' - 'a']); // Expected: 1 (from "Java")
+        System.out.println("H: " + upper['H' - 'A']); // Expected: 1 (from "Hashing")
+        System.out.println("n: " + lower['n' - 'a']); // Expected: 2 (from "Hashing in Java")
+        System.out.println("J: " + upper['J' - 'A']); // Expected: 1 (from "Java")
     }
 
-    // precompute frequency of lowercase and uppercase letters separately - 0(n)
+    // Precomputes the frequency of each letter in the string
     static int[][] precomputeFrequency(String s) {
         int[] lower = new int[26]; 
         int[] upper = new int[26]; 
 
-        for (char c: s.toCharArray()) {
+        for (char c : s.toCharArray()) {
             if (c >= 'a' && c <= 'z') {
-                lower[c-'a']++;
+                lower[c - 'a']++;
             } else if (c >= 'A' && c <= 'Z') {
-                upper[c-'A']++;
+                upper[c - 'A']++;
             }
-            // anything else (spaces, digits, symbols) is just skipped
+            // Non-alphabetic characters (e.g. spaces) are ignored
         }
 
-        return new int[][] {lower,upper};
+        return new int[][] {lower, upper};
     }
 }

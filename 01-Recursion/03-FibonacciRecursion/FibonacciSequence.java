@@ -1,32 +1,33 @@
 /**
- * Problem: Print the Fibonacci Sequence up to N terms using Recursion 
- * Difficulty: Easy 
- * Pattern: Multiple Recursion + Head Recursion 
+ * 📌 Problem: Print Fibonacci Sequence up to N Terms
+ * ⚡ Difficulty: Easy
+ * 💡 Pattern: Multiple Recursion
  * 
- * Approach: 
- * - This reuses the same fib(n) logic from FibonacciNumber.java
- * - To print the whole SEQUENCE (not just one number), loop from 0 to N - 1 and call fib(i) for each position
- * - Base call for fib: n == 0 -> return 0, n == 1 -> return 1 
- * - Recursive case for fib: fib(n-1) + fib(n-2)
+ * 🔍 Description:
+ * Prints the first N numbers of the Fibonacci sequence by calling the recursive 
+ * Fibonacci function for each position from 0 to N-1.
  * 
- * Time Complexity: O(N * 2^N) -> fib(i) is O(2^i), called N times in the loop
- * O(N) -> max recursion depth at any single fib(i) call
+ * 📈 Complexity Analysis:
+ * - Time Complexity: O(N * 2^N) -> Since we calculate fib(i) for each term from 0 to N-1.
+ * - Space Complexity: O(N) -> The recursion stack depth goes up to N.
  */
 
-
 public class FibonacciSequence {
+    // Calculates the Nth Fibonacci number
     public static int fib(int n) {
-        // base cases 
+        // Base Cases: Return n if it is 0 or 1
         if (n == 0) {
             return 0; 
         }
         if (n == 1) {
             return 1; 
         }
-        // recursive case 
-        return fib(n-1) + fib(n-2);
+        
+        // Recursive Step: Sum of the two preceding Fibonacci numbers
+        return fib(n - 1) + fib(n - 2);
     }
 
+    // Prints the sequence up to N terms
     public static void printSequence(int n) {
         for (int i = 0; i < n; i++) {
             System.out.print(fib(i) + " ");
@@ -35,8 +36,6 @@ public class FibonacciSequence {
 
     public static void main(String[] args) {
         int n = 8; 
-        printSequence(n); 
-
-        // Output: 0 1 1 2 3 5 8 13 
+        printSequence(n);
     }
 }

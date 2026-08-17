@@ -1,50 +1,46 @@
 /**
- * Problem: Find the Nth Fibonacci Number using Recursion
- * Difficulty: Easy 
- * Pattern: Multiple Recursion (calls itself twice per call)
+ * 📌 Problem: Find the Nth Fibonacci Number
+ * ⚡ Difficulty: Easy
+ * 💡 Pattern: Multiple Recursion
  * 
- * What is the Fibonacci Sequence? 
- * Each number is the sum of the two numbers before it. 
- * 0, 1, 1, 2, 3, 5, 8, 13, 21,......
- * fib(0) = 0, fib(1) = 1, fib(n) = fib(n-1) + fib(n-2)
+ * 🔍 Description:
+ * The Fibonacci sequence is a series of numbers where each number is the sum 
+ * of the two preceding ones, starting from 0 and 1.
+ * formula: fib(n) = fib(n-1) + fib(n-2) where fib(0) = 0 and fib(1) = 1.
  * 
- * Approach: 
- * - Base case: if n == 0, return 0. If n == 1, return 1
- * - Recursive case: return fib(n-1) + fib(n-2)
- * - Unlike previous problems, this makes TWO recursive calls per call, not one- this is called "multiple recursion"
- */ 
+ * 📈 Complexity Analysis:
+ * - Time Complexity: O(2^N) -> Each call branches into two more calls.
+ * - Space Complexity: O(N) -> The recursion stack depth goes up to N.
+ */
 
 public class FibonacciNumber {
     public static int fib(int n) {
-        // base cases 
+        // Base Cases: Return n if it is 0 or 1
         if (n == 0) {
             return 0; 
         }
         if (n == 1) {
             return 1; 
         }
-        // recursive case: sum of previous two fibonacci numbers 
-        return fib(n-1) + fib(n-2);
+        
+        // Recursive Step: Sum of the two preceding Fibonacci numbers
+        return fib(n - 1) + fib(n - 2);
     }
 
     public static void main(String[] args) {
         int n = 6; 
         int result = fib(n); 
         System.out.println("Fibonacci number at position " + n + " is: " + result);
-
-        // Output: Fibonacci number at position 6 is: 8
     }
 }
 
-
-/**
- * fib(4)
-├── fib(3)
-│   ├── fib(2)
-│   │   ├── fib(1) → 1
-│   │   └── fib(0) → 0
-│   └── fib(1) → 1
-└── fib(2)
-    ├── fib(1) → 1
-    └── fib(0) → 0
- */
+// Recursion Tree for fib(4):
+// fib(4)
+// ├── fib(3)
+// │   ├── fib(2)
+// │   │   ├── fib(1) -> 1
+// │   │   └── fib(0) -> 0
+// │   └── fib(1) -> 1
+// └── fib(2)
+//     ├── fib(1) -> 1
+//     └── fib(0) -> 0

@@ -1,48 +1,39 @@
 /**
- * Problem: GCD (Greatest Common Divisor) of Two Numbers using Recursion 
- * Difficulty: Easy 
- * Pattern: Math Recursion (Euclidean Algorithm)
+ * 📌 Problem: Greatest Common Divisor (GCD) of Two Numbers
+ * ⚡ Difficulty: Easy
+ * 💡 Pattern: Euclidean Algorithm (Math Recursion)
  * 
- * What is GCD? 
- * The largest number that divides both given numbers exactly. 
- * Example: GCD(20,8) -> 4 (since 4 is the largest number dividing both)
+ * 🔍 Description:
+ * The GCD of two numbers is the largest positive integer that divides both numbers without leaving a remainder.
+ * Euclid's Algorithm states: GCD(a, b) = GCD(b, a % b).
+ * This reduces (a, b) until b becomes 0, at which point 'a' is the GCD.
  * 
- * Euclid's Algorithm (the key insight): 
- * GCD(a,b) = GCD(b, a % b)
- * Keep replacing (a,b) with (b, a % b) until b becomes 0. 
- * At that point, a itself is the GCD.
- * 
- * Approach: 
- * - Base case: if b == 0, return a (a is the GCD) 
- * - Recursive case: call gcd(b, a % b)
- * 
- * Time Complexity: 0(log(min(a,b))) -> much faster than checking every number up to min(a,b)
- * Space Complexity: 0(log(min(a,b))) -> recursion stack
+ * 📈 Complexity Analysis:
+ * - Time Complexity: O(log(min(a, b))) -> The parameters reduce exponentially.
+ * - Space Complexity: O(log(min(a, b))) -> Due to the recursion stack.
  */
 
 public class GCDUsingRecursion {
     
     public static int gcd(int a, int b) {
-        // base case 
+        // Base Case: If b becomes 0, then a is the GCD
         if (b == 0) {
             return a; 
         }
-        // recursive case: replace (a,b) with (b,a%b)
-        return gcd(b,a % b);
+        
+        // Recursive Step: Replace (a, b) with (b, a % b)
+        return gcd(b, a % b);
     }
 
     public static void main(String[] args) {
         int a = 20, b = 8; 
-        int result = gcd(a,b); 
+        int result = gcd(a, b); 
         System.out.println("GCD of " + a + " and " + b + " is: " + result);
-
-        // Output: GCD of 20 and 8 is 4
     }
 }
 
-/**
- * gcd(20, 8)
-= gcd(8, 20 % 8)   → gcd(8, 4)
-= gcd(4, 8 % 4)    → gcd(4, 0)
-= b is 0, so return a → 4
- */
+// Trace:
+// gcd(20, 8)
+// = gcd(8, 20 % 8) -> gcd(8, 4)
+// = gcd(4, 8 % 4)  -> gcd(4, 0)
+// = b is 0, so returns 4
